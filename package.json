@@ -1,0 +1,26 @@
+{
+  "name": "ng2-draggable",
+  "version": "0.0.1",
+  "description": "Angular2 directive draggable.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoderAjay/ng2Draggable.git"
+  },
+  "keywords": [
+    "Angular2-draggable",
+    "ng draggable directive",
+    "draggable directive",
+    "directive",
+    "Angular 2"
+  ],
+  "author": "Ajay Singh (meajaysingh@hotmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CoderAjay/ng2Draggable/issues"
+  },
+  "homepage": "https://github.com/CoderAjay/ng2Draggable#readme"
+}
