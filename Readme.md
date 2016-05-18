@@ -23,3 +23,13 @@ A angular2 directive provide html block to move block on html plain.
 `<div [draggable]> I am a draggable component.</div>`
 
 
+#Example
+   Clone repository and Use following commands 
+   `sudo npm install`
+   `npm run start `
+   > Will result in some error don't worry about these.
+   `python -m SimpleHTTPServer `
+   >open browser with localhost:8000/example
+   
+   
+   
