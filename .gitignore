@@ -4,3 +4,5 @@ typings/
 typings/*
 tsconfig.json
 tsd.json
+*/*.js
+*.js
