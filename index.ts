@@ -1,2 +1,2 @@
-import {Draggable} from './lib';
-export Draggable;
+
+export * from './lib/index';
