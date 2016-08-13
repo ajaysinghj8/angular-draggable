@@ -2,8 +2,6 @@ node_modules/
 node_modules/*
 typings/
 typings/*
-tsconfig.json
-tsd.json
 */*.js
 .idea/modules.xml
 
