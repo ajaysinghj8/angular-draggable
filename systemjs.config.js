@@ -7,11 +7,11 @@
 
   // map tells the System loader where to look for things
   var map = {
-    'app':                        '/app', // 'dist',
-    'rxjs':                       '/node_modules/rxjs',
+    'app':                        'app', // 'dist',
+    'rxjs':                       'node_modules/rxjs',
     //'angular2-in-memory-web-api': '/node_modules/angular2-in-memory-web-api',
-    '@angular':                   '/node_modules/@angular',
-    'ng2-draggable':              '/node_modules/ng2-draggable'
+    '@angular':                   'node_modules/@angular',
+    'ng2-draggable':              'node_modules/ng2-draggable'
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
