@@ -36,12 +36,13 @@
     "systemjs": "0.19.31",
     "es6-shim": "0.35.1",
     "reflect-metadata": "^0.1.3",
-    "rxjs": "5.0.0-beta.6", 
+    "rxjs": "5.0.0-beta.6",
     "zone.js": "^0.6.12",
-    "ng2-draggable":"git+https://github.com/CoderAjay/ng2Draggable#e5868f456f18748c8082e008a74204b66faa5817"
+    "ng2-draggable": "git+https://github.com/CoderAjay/ng2Draggable#3047bfb399761acac1f721666f210dfcf1cf08c6"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
+    "gh-pages": "^0.11.0",
     "lite-server": "^2.2.0",
     "typescript": "1.8.10",
     "typings": "^0.8.1"
