@@ -36,9 +36,9 @@ npmVenders.map(np=>`/node_modules/${np}`).concat(appFilesFolders).map(ff=>{
 
 
 ghpages.publish(
-    path.join(__dirname, dist)
+    path.join(__dirname, distFolder)
 ,function (err) {
     if(err) return console.error(err);
     console.log('Created github page.');
-    removeSync(path.join(___dirname, dist));
+    fse.removeSync(path.join(___dirname, distFolder));
 });
