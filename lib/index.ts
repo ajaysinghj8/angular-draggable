@@ -1,4 +1,5 @@
-import {Directive, ElementRef, Renderer, OnDestroy, OnInit} from '@angular/core';
+import { Directive, ElementRef, Renderer, OnDestroy, OnInit, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Directive({
   selector: '[draggable]',
@@ -47,3 +48,12 @@ export class Draggable implements OnDestroy, OnInit {
   }
 
 }
+
+const DRAGGABLE_DIRECTIVES: any[] = [Draggable];
+
+@NgModule({
+  imports: [CommonModule],
+  exports: DRAGGABLE_DIRECTIVES,
+  declarations: DRAGGABLE_DIRECTIVES
+})
+export class DraggableModule { }
