@@ -13,3 +13,5 @@ tsd.json
 .idea/vcs.xml
 
 .idea/workspace.xml
+.temp
+.vscode
