@@ -12,3 +12,5 @@ typings/*
 .idea/workspace.xml
 .temp
 .vscode
+
+dist
