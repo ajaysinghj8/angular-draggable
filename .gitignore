@@ -5,7 +5,6 @@ typings/*
 tsconfig.json
 tsd.json
 */*.js
-*.js
 .idea/modules.xml
 
 .idea/ng2Draggable.iml
