@@ -13,3 +13,7 @@ typings/*
 .idea/workspace.xml
 .temp
 .vscode
+
+dist/*
+**/*.js
+**/*.d.ts
