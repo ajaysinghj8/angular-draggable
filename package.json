@@ -1,14 +1,18 @@
 {
   "name": "ng2-draggable",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Angular2 directive draggable.",
-  "main": "index.js",
+  "main": "dist/ng-draggable.js",
+  "typings": "ng2-draggable.d.ts",
   "scripts": {
+    "task.compile:system": "./.config/bundle.js",
+    "task.compile:common": "./node_modules/.bin/tsc -p tsconfig.publish.json",
+    "task.compile": "npm run task.compile:common && npm run task.compile:system",
+    "task.clean": "./node_modules/.bin/del dist \"ng2-draggable.+(js|d.ts|js.map)\"",
+    "prepublish": "npm run task.clean && npm run task.compile",
     "lite": "lite-server",
     "start": "concurrently \"npm run ;tsc:w\" \"npm run lite\" ",
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
-    "typings": "typings"
+    "tsc:w": "tsc -w"
   },
   "repository": {
     "type": "git",
@@ -27,22 +31,30 @@
     "url": "https://github.com/CoderAjay/ng2Draggable/issues"
   },
   "homepage": "https://github.com/CoderAjay/ng2Draggable#readme",
-  "dependencies": {
-    "@angular/common": "2.0.0-rc.5",
-    "@angular/compiler": "2.0.0-rc.5",
-    "@angular/core": "2.0.0-rc.5",
-    "@angular/platform-browser": "2.0.0-rc.5",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.5",
-    "systemjs": "0.19.31",
-    "es6-shim": "0.35.1",
-    "reflect-metadata": "^0.1.3",
-    "rxjs": "5.0.0-beta.6", 
-    "zone.js": "^0.6.12"
+  "dependencies": {},
+  "peerDependencies": {
+    "@angular/common": "~2.2.0",
+    "@angular/compiler": "~2.2.0",
+    "@angular/core": "~2.2.0"
   },
   "devDependencies": {
-    "concurrently": "^2.0.0",
-    "lite-server": "^2.2.0",
-    "typescript": "1.8.10",
-    "typings": "^0.8.1"
+    "@angular/common": "~2.2.0",
+    "@angular/compiler": "~2.2.0",
+    "@angular/core": "~2.2.0",
+    "@angular/platform-browser": "~2.2.0",
+    "@angular/platform-browser-dynamic": "~2.2.0",
+    "core-js": "^2.4.1",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "5.0.0-beta.12",
+    "systemjs": "0.19.39",
+    "zone.js": "^0.6.25",
+    "@types/core-js": "^0.9.34",
+    "@types/node": "^6.0.45",
+    "concurrently": "^3.0.0",
+    "del": "^2.2.2",
+    "del-cli": "^0.2.0",
+    "lite-server": "^2.2.2",
+    "systemjs-builder": "^0.15.34",
+    "typescript": "^2.0.3"
   }
 }
