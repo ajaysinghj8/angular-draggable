@@ -9,13 +9,13 @@
         "removeComments": false,
         "noImplicitAny": true,
         "suppressImplicitAnyIndexErrors": true,
-        "outDir": "./"
+        "declaration": true
     },
     "exclude": [
-        "node_modules",
-        "typings/main"
+        "node_modules"
     ],
     "files": [
-        "src/index.ts"
+        "./ng2-draggable.ts"
     ]
 }
+
