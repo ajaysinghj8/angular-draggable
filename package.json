@@ -1,6 +1,6 @@
 {
   "name": "ng2-draggable",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Angular2 directive draggable.",
   "main": "dist/ng-draggable.js",
   "typings": "ng2-draggable.d.ts",
