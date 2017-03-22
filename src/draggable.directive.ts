@@ -9,7 +9,7 @@ import { Directive, ElementRef, Renderer, OnDestroy, OnInit, AfterViewInit, Inpu
     '(drag)': 'onDrag($event)'
   }
 })
-export class DraggableDirecrtive implements OnDestroy, OnInit, AfterViewInit {
+export class DraggableDirective implements OnDestroy, OnInit, AfterViewInit {
   private Δx: number = 0;
   private Δy: number = 0;
   
