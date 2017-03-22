@@ -1,48 +1,45 @@
 # Ng2Draggable
 A angular2 directive provide html block to move block on html plain.
 
-# USES
+## Usages
  
->Using NgModule
-
-
-<code>
-<br>import {DraggableModule} from 'ng2-draggable'; 
-<br>@NgModule({                                   
-<br>    imports: [
-<br>        ....,                                
-<br>        DraggableModule                       
-<br>    ],
-<br>    declarations: [YourAppComponent ],
-<br>    exports: [YourAppComponent],
-<br>    bootstrap: [YourAppComponent],
-<br>})
-</code> 
-
- #### For more information have a look at example files.
-
->Basic
-`import {Draggable} from 'ng2-draggable';`
-
-`@Component({`
-    `template:'<div [draggable]> I am a draggable component.</div>',`
-    `directives: [Draggable]` 
-`})`
-...`
-
->OR
-
-`@Component({
-    templateUrl:'x.template.html',
-    directives: [Draggable] 
+```js
+import { Ng2DraggableModule } from 'ng2-draggable'; 
+@NgModule({                                   
+    imports: [
+        ....,                                
+        Ng2DraggableModule                       
+    ],
+    declarations: [YourAppComponent ],
+    exports: [YourAppComponent],
+    bootstrap: [YourAppComponent],
 })
-...`
-
->in `x.template.html`
-
-`<div [draggable]> I am a draggable component.</div>`
+.....
 
 
+```
+
+```html
+<div draggable>
+    content
+ </div>    
+
+```
+
+
+```html
+<div draggable="true">
+    content
+</div>    
+
+```
+
+```html
+<div draggable="false">
+    content
+</div>    
+
+```
 # Example
    [#demo](https://coderajay.github.io/ng2Draggable)
    
