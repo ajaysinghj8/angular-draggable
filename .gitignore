@@ -16,4 +16,5 @@ typings/*
 
 dist/*
 **/*.js
+**/*.js.map
 **/*.d.ts
