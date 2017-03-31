@@ -1,14 +1,14 @@
-# Ng2Draggable
-A angular2 directive provide html block to move block on html plain.
+# Angualr-Draggable
+A angular directive provide html block to move on html plain.
 
 ## Usages
  
 ```js
-import { Ng2DraggableModule } from 'ng2-draggable'; 
+import { NgDraggableModule } from 'angular-draggable'; 
 @NgModule({                                   
     imports: [
         ....,                                
-        Ng2DraggableModule                       
+        NgDraggableModule                       
     ],
     declarations: [YourAppComponent ],
     exports: [YourAppComponent],
@@ -41,7 +41,7 @@ import { Ng2DraggableModule } from 'ng2-draggable';
 
 ```
 # Example
-   [#demo](https://coderajay.github.io/ng2Draggable)
+   [#demo](https://coderajay.github.io/angular-draggable)
    
    
    
