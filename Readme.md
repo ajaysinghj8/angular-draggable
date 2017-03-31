@@ -1,4 +1,4 @@
-# Angualr-Draggable
+# Angular-Draggable
 A angular directive provide html block to move on html plain.
 
 ## Usages
