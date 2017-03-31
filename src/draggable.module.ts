@@ -7,4 +7,4 @@ import { DraggableDirective } from './draggable.directive';
   exports: [ DraggableDirective ],
   providers: []
 })
-export class Ng2DraggableModule { }
+export class NgDraggableModule { }
