@@ -1,7 +1,7 @@
 {
   "name": "angular-draggable",
-  "version": "1.0.0",
-  "description": "Angular2 directive draggable.",
+  "version": "1.0.1",
+  "description": "Angular directive draggable.",
   "main": "dist/draggable.module.js",
   "typings": "dist/draggable.module.d.ts",
   "scripts": {
@@ -19,7 +19,7 @@
     "ng draggable directive",
     "draggable directive",
     "directive",
-    "Angular 2"
+    "Angular"
   ],
   "author": "Ajay Singh (meajaysingh@hotmail.com)",
   "license": "MIT",
