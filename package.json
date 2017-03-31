@@ -1,6 +1,6 @@
 {
-  "name": "ng2-draggable",
-  "version": "0.2.1",
+  "name": "angular-draggable",
+  "version": "1.0.0",
   "description": "Angular2 directive draggable.",
   "main": "dist/draggable.module.js",
   "typings": "dist/draggable.module.d.ts",
@@ -12,10 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CoderAjay/ng2Draggable.git"
+    "url": "git+https://github.com/CoderAjay/angular-draggable.git"
   },
   "keywords": [
-    "Angular2-draggable",
+    "Angular-draggable",
     "ng draggable directive",
     "draggable directive",
     "directive",
@@ -24,9 +24,9 @@
   "author": "Ajay Singh (meajaysingh@hotmail.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CoderAjay/ng2Draggable/issues"
+    "url": "https://github.com/CoderAjay/angular-draggable/issues"
   },
-  "homepage": "https://github.com/CoderAjay/ng2Draggable#readme",
+  "homepage": "https://github.com/CoderAjay/angular-draggable#readme",
   "dependencies": {},
   "peerDependencies": {
     "@angular/core": "^2.4.10",
