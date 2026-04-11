@@ -106,14 +106,7 @@
   font-weight: 600;
   font-size: 0.95rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  cursor: grab;
-  user-select: none;
-  transition: box-shadow 0.15s, opacity 0.2s;
-}
-
-.box:active {
-  cursor: grabbing;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.15s;
 }
 
 .box__icon {
