@@ -1,0 +1,47 @@
+name: Deploy Example to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Library devDeps must be installed so the example build can resolve
+      # @angular/core from the root node_modules (path alias ../src/public-api.ts)
+      - name: Install library dependencies
+        run: npm ci
+
+      - name: Install example dependencies
+        run: npm ci
+        working-directory: example
+
+      - name: Build example
+        run: npx ng build --base-href /angular-draggable/ --configuration production
+        working-directory: example
+
+      - name: Add .nojekyll
+        run: touch example/dist/example/browser/.nojekyll
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: example/dist/example/browser
+          force_orphan: true
+          commit_message: 'deploy: ${{ github.sha }}'
