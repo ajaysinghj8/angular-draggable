@@ -1,8 +1,8 @@
-import { Directive, ElementRef, Renderer, OnDestroy, OnInit, AfterViewInit, Input } from '@angular/core';
-
+import { Directive, ElementRef, Renderer2, OnDestroy, OnInit, AfterViewInit, Input } from '@angular/core';
 
 @Directive({
   selector: '[draggable]',
+  standalone: true,
   host: {
     '(dragstart)': 'onDragStart($event)',
     '(dragend)': 'onDragEnd($event)',
@@ -10,59 +10,58 @@ import { Directive, ElementRef, Renderer, OnDestroy, OnInit, AfterViewInit, Inpu
   }
 })
 export class DraggableDirective implements OnDestroy, OnInit, AfterViewInit {
-  private Δx: number = 0;
-  private Δy: number = 0;
-  
-  private canDrag:boolean = true;
-  
+  private deltaX = 0;
+  private deltaY = 0;
+  private canDrag = true;
+
   @Input('draggable')
-  set draggable(val:any){
-    if(val === undefined || val === null || val === '' ) return;
-    this.canDrag = !!val;
+  set draggable(val: boolean | string) {
+    if (val === undefined || val === null || val === '') return;
+    this.canDrag = val === true || val === 'true';
   }
-  private mustBePosition: Array<string> = ['absolute', 'fixed', 'relative'];
-  constructor(
-    private el: ElementRef, private renderer: Renderer
-  ) {
-    
-  }
-  
+
+  private readonly mustBePosition = ['absolute', 'fixed', 'relative'];
+
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
+
   ngOnInit(): void {
-    this.renderer.setElementAttribute(this.el.nativeElement, 'draggable', 'true');
+    this.renderer.setAttribute(this.el.nativeElement, 'draggable', 'true');
   }
-  ngAfterViewInit(){
+
+  ngAfterViewInit(): void {
     try {
-      let position = window.getComputedStyle(this.el.nativeElement).position;
-      if (this.mustBePosition.indexOf(position) === -1) {
-        console.warn( this.el.nativeElement, 'Must be having position attribute set to ' + this.mustBePosition.join('|'));
+      const position = window.getComputedStyle(this.el.nativeElement).position;
+      if (!this.mustBePosition.includes(position)) {
+        console.warn(this.el.nativeElement, 'Must have position set to ' + this.mustBePosition.join('|'));
       }
     } catch (ex) {
       console.error(ex);
     }
   }
+
   ngOnDestroy(): void {
-    this.renderer.setElementAttribute(this.el.nativeElement, 'draggable', 'false');
-  }
-  
-  onDragStart(event: MouseEvent) {
-    this.Δx = event.x - this.el.nativeElement.offsetLeft;
-    this.Δy = event.y - this.el.nativeElement.offsetTop;
+    this.renderer.setAttribute(this.el.nativeElement, 'draggable', 'false');
   }
 
-  onDrag(event: MouseEvent) {
-    this.doTranslation(event.x, event.y);
+  onDragStart(event: DragEvent): void {
+    if (!this.canDrag) return;
+    this.deltaX = event.clientX - this.el.nativeElement.offsetLeft;
+    this.deltaY = event.clientY - this.el.nativeElement.offsetTop;
   }
 
-  onDragEnd(event: MouseEvent) {
-    this.Δx = 0;
-    this.Δy = 0;
+  onDrag(event: DragEvent): void {
+    if (!this.canDrag) return;
+    this.doTranslation(event.clientX, event.clientY);
   }
 
-  doTranslation(x: number, y: number) {
+  onDragEnd(_event: DragEvent): void {
+    this.deltaX = 0;
+    this.deltaY = 0;
+  }
+
+  private doTranslation(x: number, y: number): void {
     if (!x || !y) return;
-    this.renderer.setElementStyle(this.el.nativeElement, 'top', (y - this.Δy) + 'px');
-    this.renderer.setElementStyle(this.el.nativeElement, 'left', (x - this.Δx) + 'px');
+    this.renderer.setStyle(this.el.nativeElement, 'top', (y - this.deltaY) + 'px');
+    this.renderer.setStyle(this.el.nativeElement, 'left', (x - this.deltaX) + 'px');
   }
-  
-
 }

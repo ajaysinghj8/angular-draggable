@@ -7,6 +7,8 @@
 # dependencies
 /node_modules
 /bower_components
+example/node_modules
+example/dist
 
 # IDEs and editors
 /.idea

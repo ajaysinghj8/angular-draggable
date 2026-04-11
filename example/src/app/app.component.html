@@ -1,0 +1,30 @@
+<div class="layout">
+  <header class="header">
+    <div class="header__inner">
+      <div class="header__title">
+        <h1>Angular Draggable</h1>
+        <span class="badge">Demo</span>
+      </div>
+      <p class="header__subtitle">Drag any box around the canvas. Toggle dragging on or off with the button.</p>
+      <button class="toggle-btn" [class.toggle-btn--off]="!isDraggable" (click)="toggleDragging()">
+        Dragging: {{ isDraggable ? 'ON' : 'OFF' }}
+      </button>
+    </div>
+  </header>
+
+  <main class="canvas">
+    <div
+      *ngFor="let box of boxes"
+      class="box"
+      [draggable]="isDraggable"
+      [style.top]="box.top"
+      [style.left]="box.left"
+      [style.background]="box.color"
+    >
+      <span class="box__icon">&#9654;</span>
+      {{ box.label }}
+    </div>
+
+    <p class="canvas__hint" *ngIf="!isDraggable">Dragging is disabled — click the button to re-enable.</p>
+  </main>
+</div>

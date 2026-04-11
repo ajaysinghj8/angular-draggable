@@ -1,0 +1,136 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────── */
+.header {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 20px 0;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.header__inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.header__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__title h1 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.badge {
+  background: #4f46e5;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.header__subtitle {
+  flex: 1;
+  font-size: 0.875rem;
+  color: #a5b4fc;
+  min-width: 200px;
+}
+
+.toggle-btn {
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.toggle-btn:hover {
+  background: #4338ca;
+}
+
+.toggle-btn:active {
+  transform: scale(0.97);
+}
+
+.toggle-btn--off {
+  background: #6b7280;
+}
+
+.toggle-btn--off:hover {
+  background: #4b5563;
+}
+
+/* ── Canvas ──────────────────────────────────────── */
+.canvas {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background-image:
+    radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ── Draggable boxes ─────────────────────────────── */
+.box {
+  position: fixed;
+  width: 140px;
+  height: 80px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  cursor: grab;
+  user-select: none;
+  transition: box-shadow 0.15s, opacity 0.2s;
+}
+
+.box:active {
+  cursor: grabbing;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+}
+
+.box__icon {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+/* Hint shown when dragging is disabled */
+.canvas__hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
