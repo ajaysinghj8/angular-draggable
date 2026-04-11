@@ -5,7 +5,7 @@
         <h1>Angular Draggable</h1>
         <span class="badge">Demo</span>
       </div>
-      <p class="header__subtitle">Drag any box around the canvas. Toggle dragging on or off with the button.</p>
+      <p class="header__subtitle">Drag boxes onto the drop zones. Toggle dragging on or off.</p>
       <button class="toggle-btn" [class.toggle-btn--off]="!isDraggable" (click)="toggleDragging()">
         Dragging: {{ isDraggable ? 'ON' : 'OFF' }}
       </button>
@@ -13,18 +13,49 @@
   </header>
 
   <main class="canvas">
+    <!-- Draggable boxes -->
     <div
       *ngFor="let box of boxes"
       class="box"
       [draggable]="isDraggable"
+      [dragData]="box.label"
       [style.top]="box.top"
       [style.left]="box.left"
       [style.background]="box.color"
     >
-      <span class="box__icon">&#9654;</span>
       {{ box.label }}
     </div>
 
-    <p class="canvas__hint" *ngIf="!isDraggable">Dragging is disabled — click the button to re-enable.</p>
+    <!-- Drop zones -->
+    <div class="zones">
+      <div
+        class="zone"
+        droppable
+        [class.zone--over]="zone1Over"
+        (itemDropped)="onDrop('Zone 1', $event)"
+        (dragEnter)="zone1Over = true"
+        (dragLeave)="zone1Over = false"
+      >
+        <span class="zone__label">Zone 1</span>
+        <span class="zone__hint">Drop here</span>
+      </div>
+
+      <div
+        class="zone"
+        droppable
+        [class.zone--over]="zone2Over"
+        (itemDropped)="onDrop('Zone 2', $event)"
+        (dragEnter)="zone2Over = true"
+        (dragLeave)="zone2Over = false"
+      >
+        <span class="zone__label">Zone 2</span>
+        <span class="zone__hint">Drop here</span>
+      </div>
+    </div>
+
+    <!-- Drop log -->
+    <div class="log" *ngIf="dropLog.length > 0">
+      <p *ngFor="let entry of dropLog" class="log__entry">{{ entry }}</p>
+    </div>
   </main>
 </div>
