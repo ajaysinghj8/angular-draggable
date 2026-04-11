@@ -22,14 +22,12 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      # Library devDeps must be installed so the example build can resolve
-      # @angular/core from the root node_modules (path alias ../src/public-api.ts)
-      - name: Install library dependencies
+      # Single install thanks to npm workspaces — all packages (root + example)
+      # are hoisted into one node_modules tree, guaranteeing a single copy of
+      # @angular/core and eliminating the NG0203 duplicate-module error.
+      - name: Install dependencies
         run: npm ci
 
-      - name: Install example dependencies
-        run: npm ci
-        working-directory: example
 
       - name: Build example
         run: npx ng build --base-href /angular-draggable/ --configuration production
