@@ -1,68 +1,85 @@
-import { Directive, ElementRef, Renderer, OnDestroy, OnInit, AfterViewInit, Input } from '@angular/core';
-
+import { Directive, ElementRef, Renderer2, OnDestroy, AfterViewInit, Input } from '@angular/core';
+import { DragDropService } from './drag-drop.service';
 
 @Directive({
   selector: '[draggable]',
+  standalone: true,
   host: {
-    '(dragstart)': 'onDragStart($event)',
-    '(dragend)': 'onDragEnd($event)',
-    '(drag)': 'onDrag($event)'
+    '(mousedown)': 'onMouseDown($event)'
   }
 })
-export class DraggableDirective implements OnDestroy, OnInit, AfterViewInit {
-  private Δx: number = 0;
-  private Δy: number = 0;
-  
-  private canDrag:boolean = true;
-  
-  @Input('draggable')
-  set draggable(val:any){
-    if(val === undefined || val === null || val === '' ) return;
-    this.canDrag = !!val;
+export class DraggableDirective implements OnDestroy, AfterViewInit {
+  /** Enable or disable dragging. Accepts boolean or 'true'/'false' string. */
+  @Input('draggable') set draggable(val: boolean | string) {
+    if (val === undefined || val === null || val === '') return;
+    this.canDrag = val === true || val === 'true';
+    this.renderer.setStyle(this.el.nativeElement, 'cursor', this.canDrag ? 'grab' : 'default');
   }
-  private mustBePosition: Array<string> = ['absolute', 'fixed', 'relative'];
+
+  /** Arbitrary data passed to the drop target via DropEvent.data. */
+  @Input() dragData: unknown;
+
+  private canDrag = true;
+  private deltaX = 0;
+  private deltaY = 0;
+  private moveUnlisten?: () => void;
+  private upUnlisten?: () => void;
+
+  private readonly mustBePosition = ['absolute', 'fixed', 'relative'];
+
   constructor(
-    private el: ElementRef, private renderer: Renderer
+    private readonly el: ElementRef<HTMLElement>,
+    private readonly renderer: Renderer2,
+    private readonly dragDropService: DragDropService,
   ) {
-    
+    this.renderer.setStyle(this.el.nativeElement, 'cursor', 'grab');
   }
-  
-  ngOnInit(): void {
-    this.renderer.setElementAttribute(this.el.nativeElement, 'draggable', 'true');
-  }
-  ngAfterViewInit(){
+
+  ngAfterViewInit(): void {
     try {
-      let position = window.getComputedStyle(this.el.nativeElement).position;
-      if (this.mustBePosition.indexOf(position) === -1) {
-        console.warn( this.el.nativeElement, 'Must be having position attribute set to ' + this.mustBePosition.join('|'));
+      const position = window.getComputedStyle(this.el.nativeElement).position;
+      if (!this.mustBePosition.includes(position)) {
+        console.warn(this.el.nativeElement, 'Must have position set to ' + this.mustBePosition.join('|'));
       }
     } catch (ex) {
       console.error(ex);
     }
   }
+
   ngOnDestroy(): void {
-    this.renderer.setElementAttribute(this.el.nativeElement, 'draggable', 'false');
-  }
-  
-  onDragStart(event: MouseEvent) {
-    this.Δx = event.x - this.el.nativeElement.offsetLeft;
-    this.Δy = event.y - this.el.nativeElement.offsetTop;
+    this.removeDocumentListeners();
   }
 
-  onDrag(event: MouseEvent) {
-    this.doTranslation(event.x, event.y);
+  onMouseDown(event: MouseEvent): void {
+    if (!this.canDrag) return;
+    event.preventDefault();
+
+    this.deltaX = event.clientX - this.el.nativeElement.offsetLeft;
+    this.deltaY = event.clientY - this.el.nativeElement.offsetTop;
+
+    this.renderer.setStyle(this.el.nativeElement, 'cursor', 'grabbing');
+    this.renderer.setStyle(document.body, 'user-select', 'none');
+
+    this.dragDropService.startDrag(this.el.nativeElement);
+
+    this.moveUnlisten = this.renderer.listen('document', 'mousemove', (e: MouseEvent) => {
+      this.renderer.setStyle(this.el.nativeElement, 'top',  (e.clientY - this.deltaY) + 'px');
+      this.renderer.setStyle(this.el.nativeElement, 'left', (e.clientX - this.deltaX) + 'px');
+      this.dragDropService.updateDragPosition(e.clientX, e.clientY);
+    });
+
+    this.upUnlisten = this.renderer.listen('document', 'mouseup', (e: MouseEvent) => {
+      this.dragDropService.endDrag(e.clientX, e.clientY, this.dragData);
+      this.removeDocumentListeners();
+      this.renderer.setStyle(this.el.nativeElement, 'cursor', 'grab');
+      this.renderer.removeStyle(document.body, 'user-select');
+    });
   }
 
-  onDragEnd(event: MouseEvent) {
-    this.Δx = 0;
-    this.Δy = 0;
+  private removeDocumentListeners(): void {
+    this.moveUnlisten?.();
+    this.upUnlisten?.();
+    this.moveUnlisten = undefined;
+    this.upUnlisten  = undefined;
   }
-
-  doTranslation(x: number, y: number) {
-    if (!x || !y) return;
-    this.renderer.setElementStyle(this.el.nativeElement, 'top', (y - this.Δy) + 'px');
-    this.renderer.setElementStyle(this.el.nativeElement, 'left', (x - this.Δx) + 'px');
-  }
-  
-
 }

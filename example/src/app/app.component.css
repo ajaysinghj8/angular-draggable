@@ -1,0 +1,159 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────── */
+.header {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 20px 0;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.header__inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.header__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__title h1 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.badge {
+  background: #4f46e5;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.header__subtitle {
+  flex: 1;
+  font-size: 0.875rem;
+  color: #a5b4fc;
+  min-width: 200px;
+}
+
+.toggle-btn {
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggle-btn:hover  { background: #4338ca; }
+.toggle-btn--off   { background: #6b7280; }
+.toggle-btn--off:hover { background: #4b5563; }
+
+/* ── Canvas ──────────────────────────────────────── */
+.canvas {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ── Draggable boxes ─────────────────────────────── */
+.box {
+  position: fixed;
+  width: 130px;
+  height: 70px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.15s;
+  z-index: 20;
+}
+
+/* ── Drop zones ──────────────────────────────────── */
+.zones {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 24px;
+}
+
+.zone {
+  width: 200px;
+  height: 120px;
+  border: 2px dashed #94a3b8;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.6);
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  backdrop-filter: blur(4px);
+}
+
+.zone--over {
+  border-color: #4f46e5;
+  background: rgba(79, 70, 229, 0.08);
+  transform: scale(1.03);
+}
+
+.zone__label {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #1e293b;
+}
+
+.zone__hint {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* ── Drop log ────────────────────────────────────── */
+.log {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.log__entry {
+  background: #1e293b;
+  color: #e2e8f0;
+  font-size: 0.78rem;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
