@@ -19,7 +19,22 @@
     "lib": ["ES2022", "dom"],
     "baseUrl": "",
     "paths": {
-      "angular-draggable": ["../src/public-api.ts"]
+      "angular-draggable": ["../src/public-api.ts"],
+      "@angular/animations": ["./node_modules/@angular/animations"],
+      "@angular/animations/*": ["./node_modules/@angular/animations/*"],
+      "@angular/common": ["./node_modules/@angular/common"],
+      "@angular/common/*": ["./node_modules/@angular/common/*"],
+      "@angular/compiler": ["./node_modules/@angular/compiler"],
+      "@angular/compiler/*": ["./node_modules/@angular/compiler/*"],
+      "@angular/core": ["./node_modules/@angular/core"],
+      "@angular/core/*": ["./node_modules/@angular/core/*"],
+      "@angular/platform-browser": ["./node_modules/@angular/platform-browser"],
+      "@angular/platform-browser/*": ["./node_modules/@angular/platform-browser/*"],
+      "@angular/platform-browser-dynamic": ["./node_modules/@angular/platform-browser-dynamic"],
+      "@angular/platform-browser-dynamic/*": ["./node_modules/@angular/platform-browser-dynamic/*"],
+      "rxjs": ["./node_modules/rxjs"],
+      "rxjs/*": ["./node_modules/rxjs/*"],
+      "tslib": ["./node_modules/tslib"]
     }
   },
   "angularCompilerOptions": {
