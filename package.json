@@ -2,15 +2,6 @@
   "name": "angular-draggable",
   "version": "2.0.0",
   "description": "Angular directive to make HTML elements draggable.",
-  "main": "dist/fesm2022/angular-draggable.mjs",
-  "typings": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "esm2022": "./dist/esm2022/angular-draggable.mjs",
-      "default": "./dist/fesm2022/angular-draggable.mjs"
-    }
-  },
   "scripts": {
     "build": "ng-packagr -p ng-package.json",
     "clean": "rm -rf dist",
@@ -20,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CoderAjay/angular-draggable.git"
+    "url": "git+https://github.com/ajaysinghj8/angular-draggable.git"
   },
   "keywords": [
     "Angular-draggable",
@@ -32,9 +23,9 @@
   "author": "Ajay Singh (meajaysingh@hotmail.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CoderAjay/angular-draggable/issues"
+    "url": "https://github.com/ajaysinghj8/angular-draggable/issues"
   },
-  "homepage": "https://github.com/CoderAjay/angular-draggable#readme",
+  "homepage": "https://github.com/ajaysinghj8/angular-draggable#readme",
   "workspaces": ["example"],
   "dependencies": {},
   "peerDependencies": {
