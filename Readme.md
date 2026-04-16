@@ -172,7 +172,7 @@ onDrop(zone: string, event: DropEvent): void {
 
 ## Live demo
 
-[https://coderajay.github.io/angular-draggable](https://coderajay.github.io/angular-draggable)
+[https://ajaysinghj8.github.io/angular-draggable](https://ajaysinghj8.github.io/angular-draggable)
 
 ---
 
